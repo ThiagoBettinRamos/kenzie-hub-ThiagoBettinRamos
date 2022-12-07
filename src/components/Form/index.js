@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-export const StyledForm = styled.form`
+export const Form = styled.form`
     width: 23.125rem;
     max-width: 100%;
-    height: 31.25rem;
+  
     padding: 2.5rem 0;
 
     background-color: var(--color-grey-3);

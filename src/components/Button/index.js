@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const StyledButton = styled.button`
+export const Button = styled.button`
     border-radius: 0.25rem;
     box-sizing: border-box;
     color: var(--color-grey-0);
@@ -10,7 +10,7 @@ export const StyledButton = styled.button`
         if (props.theme === "pink") {
             return "var(--color-1)"
         }
-        if (props.theme === "pink") {
+        if (props.theme === "grey") {
             return "var(--color-grey-3)"
         }
         return "var(--color-grey-1)"

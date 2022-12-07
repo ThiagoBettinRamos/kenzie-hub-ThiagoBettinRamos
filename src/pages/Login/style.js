@@ -13,5 +13,6 @@ export const StyledLogin = styled.main`
         justify-content: center;
         display: flex;
     }
+
 `
 
