@@ -1,6 +1,7 @@
 import { StyledHeader } from "./style"
 import { Button } from "../Button"
 import { useNavigate } from "react-router-dom"
+import Logo from "../../Logo.svg"
 
 export function Header({ haveBackButton, haveCloseButton }){
     const navigate = useNavigate()
@@ -13,7 +14,7 @@ export function Header({ haveBackButton, haveCloseButton }){
    return(
    
     <StyledHeader>
-        <img src="./img/logo.png" alt="logo" />
+        <img src={Logo} alt="logo" />
         {haveBackButton ? <Button
             large = "default"
             theme = "grey"

@@ -2,34 +2,21 @@ import { Form } from "../../components/Form"
 import { StyledLogin } from "./style"
 import { Header } from "../../components/Header"
 import { Input } from "../../components/Input"
-import { Button } from "../../components/Button"
-import { useNavigate } from "react-router-dom"
+import { Button, PseudoButton } from "../../components/Button"
+import { Link } from "react-router-dom"
 import { loginSchama } from "./loginSchema"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { useForm } from "react-hook-form"
-import { toast } from "react-toastify";
-import axios from "axios"
+import { useContext } from "react"
+import { UserContext } from "../../components/Context/UserContext"
+
 
 export function Login(){
     const { register, handleSubmit, formState : {errors} } = useForm({
         resolver : yupResolver (loginSchama)
     })
-    const onSubmit = (data) => {
-        const requisition = axios.post("https://kenziehub.herokuapp.com/sessions", data)
-        .then((resp) => localStorage.setItem("@thiaguinmito/kenziehub/userId", JSON.stringify(resp.data.user.id)))
-        .then(() => navigate("/Home"))
-
-        toast.promise(
-            requisition,
-            {
-              pending: 'Analisando dados...',
-              success: 'Login feito com sucesso!👌',
-              error: 'Iiih, deu ruim 🤯'
-            }
-        )
-    }
     
-    const navigate = useNavigate()
+    const { login } = useContext(UserContext);
 
     return(
         <StyledLogin>
@@ -37,7 +24,7 @@ export function Login(){
                 size = "low"
             />
             <Form 
-                onSubmit={handleSubmit(onSubmit)}
+                onSubmit={handleSubmit(login)}
                 noValidate
             >
              <h2>Login</h2>
@@ -66,15 +53,16 @@ export function Login(){
                     Entrar 
                 </Button>
                 <span>Ainda não possui um aconta?</span>
-                <Button
-                theme  = "default"
-                size      = "long"
-                large    = "long"
-                onClick = {() => navigate("/Cadastro")} 
-                type      = "button"
-                >
+                <Link to="/Cadastro">
+                    <PseudoButton
+                    theme  = "default"
+                    size      = "long"
+                    large    = "long"
+                    >
                     Cadastre-se
-                </Button>
+                    </PseudoButton>
+                </Link> 
+                
             </Form>
         </StyledLogin>
     )

@@ -51,9 +51,8 @@ export const StyledHome = styled.main`
         padding:3rem ;
 
         & > div{
-            justify-content: flex-start;
+            justify-content: space-between ;
             display: flex;
-            flex-direction: column;
             width: 100%;
             max-width: 90rem;
             padding: 0 1rem;
@@ -61,11 +60,28 @@ export const StyledHome = styled.main`
             gap: 3rem;
         }
     }
-
+    & h3{
+        color: var(--color-grey-0)
+    }
     & > div h2 {
         color: var(--color-grey-0)
     }
     & > div span{
         color: var(--color-grey-0)
     }
+`
+
+
+
+export const StyledList = styled.ul`
+    list-style: none;
+    width: 88.75rem;
+    max-width: 100%;
+    background-color: var(--color-grey-3);
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    padding: 1.5rem 1.5rem;
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
 `

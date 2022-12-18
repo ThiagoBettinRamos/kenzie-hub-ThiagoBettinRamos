@@ -6,9 +6,9 @@ import { Button } from "../../components/Button"
 import { registerSchema } from "./registerSchema"
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup"
-import axios from "axios"
-import { useNavigate } from "react-router-dom"
-import { toast } from "react-toastify";
+import { useContext } from "react"
+import { UserContext } from "../../components/Context/UserContext"
+import { StyleSheetManager } from "styled-components"
 
 
 export function Cadastro(){
@@ -16,30 +16,15 @@ export function Cadastro(){
             resolver : yupResolver( registerSchema )
         }) 
 
-        const navigate = useNavigate("");
 
-        const onSubmit = (data) =>  {
-            delete data.confirm
-            const requisition = axios.post("https://kenziehub.herokuapp.com/users", data)
-                .then(() => navigate("/"))
-
-            toast.promise(
-                    requisition,
-                    {
-                      pending: 'Analisando dados...',
-                      success: 'Conta criada com sucesso!👌',
-                      error: 'Iiih, deu ruim 🤯'
-                    }
-                )
-        }
-        
+       const {registerUser} = useContext(UserContext)
     return(
         <StyledCadastro>
             <Header
              haveBackButton
              />
             <Form
-                onSubmit = {handleSubmit(onSubmit)}
+                onSubmit = {handleSubmit(registerUser)}
                 noValidate
             >
                 <h2>Crie sua conta</h2>
@@ -122,3 +107,5 @@ export function Cadastro(){
         </StyledCadastro>
     )
 }
+
+

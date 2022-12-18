@@ -14,5 +14,8 @@ export const StyledLogin = styled.main`
         display: flex;
     }
 
+    a {
+        text-decoration: none;
+    }
 `
 
